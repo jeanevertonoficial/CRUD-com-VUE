@@ -1,11 +1,6 @@
 <template>
 
-  <MessegesDeAlerts
-      class="mensagem"
-      :txt_mensagem="msg"
-      :class="estiloDaMensagem"
-      v-show="msg"
-  />
+  <MessegesDeAlerts class="mensagem" :txt_mensagem="msg" :class="estiloDaMensagem" v-show="msg"/>
 
   <TituloPagina :titulo="titulo"/>
 
@@ -45,17 +40,6 @@
       </div>
     </div>
   </div>
-
-  <div class="container-md">
-    <p class="alert alert-warning" v-if="cadastros == 0">Nenhum resgistro encontrado...</p>
-      <p style="font-weight: bold" class="text-xl-center">Super Mario World</p>
-    <div class="d-flex justify-content-center">
-      <iframe src="https://www.retrogames.cc/embed/42720-super-marina-world.html" width="600" height="450"
-              frameborder="no" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"
-              scrolling="no"></iframe>
-    </div>
-  </div>
-
 </template>
 
 <script>
@@ -70,6 +54,7 @@ export default {
     return {
       titulo: "LISTA DE USUÁRIOS",
       msg: null,
+      alerta: "Dentro do caminho db execute, npm run banco",
 
       nome: null,
       sobrenome: null,
@@ -130,9 +115,9 @@ export default {
       const res = await req.json();
 
       // Mensagem
-      this.msg = `#${res.id} atualizado com sucesso (RECARREGA A PÁGINA) para ver a atualização!`
-
-      setTimeout(() => this.msg = "", 3500)
+      this.msg = `#${res.id} atualizado com sucesso!`
+      setTimeout(()=> document.location.reload(true), 3000)
+      setTimeout(() => this.msg = "", 3000)
 
     }
 
